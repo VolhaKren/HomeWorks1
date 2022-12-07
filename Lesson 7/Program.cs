@@ -42,7 +42,7 @@ Show2dArray(myArray);
 */
 
 // Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
-
+/*
 int[,] CreateRandom2dArray(int rows, int columns, int minValue, int maxValue)
 {
     int[,] array = new int[rows, columns];
@@ -69,6 +69,12 @@ void Show2dArray(int[,] array)
     }
 }
 
+bool ShowValue(int row, int column, int[,] array)
+{
+    if((row > (array.GetLength(0))-1) || (column > (array.GetLength(1)-1)))
+        Console.WriteLine("Value is absent");
+    else Console.WriteLine("Value of your element: " + array[row, column]);
+}
 Console.Write("Input a numbers of rows: ");
 int m = Convert.ToInt32(Console.ReadLine());
 Console.Write("Input a numbers of columns: ");
@@ -81,7 +87,12 @@ int max = Convert.ToInt32(Console.ReadLine());
 int[,] myArray = CreateRandom2dArray(m, n, min, max);
 Show2dArray(myArray);
 
-
+Console.WriteLine("Input a number of row: ");
+int a = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Input a number of column: ");
+int b = Convert.ToInt32(Console.ReadLine());
+ShowValue(a, b, myArray);
+*/
 
 // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 /*
@@ -89,9 +100,9 @@ int[,] CreateRandom2dArray(int rows, int columns, int minValue, int maxValue)
 {
     int[,] array = new int[rows, columns];
 
-    for(int j = 0; j < columns; j++)
+    for(int i = 0; i < columns; i++)
     {
-        for(int i = 0; i < rows; i++)
+        for(int j = 0; j < rows; j++)
         {
             array[i,j] = new Random().Next(minValue, maxValue + 1);
         }
@@ -102,36 +113,28 @@ int[,] CreateRandom2dArray(int rows, int columns, int minValue, int maxValue)
 
 void Show2dArray(int[,] array)
 {
-    for(int j = 0; j < array.GetLength(0); j++)
+    for(int i = 0; i < array.GetLength(0); i++)
     {
-        for(int i = 0; i < array.GetLength(1); i++)
+        for(int j = 0; j < array.GetLength(1); j++)
             Console.Write(array[i,j] + " ");
 
         Console.WriteLine();
     }
 }
 
-int FindAverage(int[,] array)
+void FindAverageInColumn (int[,] array)
 {
-    double sum = 0;
-    int count = 0;
-
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        result += "\n";
-        sum=0;
-        count=0;
-
-        for (int j = 0; j < array.GetLength(1); j++)
+    Console.WriteLine("Average in Columns");
+        for(int j = 0; j< array.GetLength(1); j++)
         {
-            result += array[i, j] + "\t";
-        }
+            double average = 0;
+            for(int i = 0; i< array.GetLength(0); i++)
+            {
+                average += array[i, j];
+            }
+            Console.Write(Math.Round((average / array.GetLength(0)), 1)+ " ");
     }
-    return result
 }
-
-Console.WriteLine(result);
-result="";
 
 Console.Write("Input a numbers of rows: ");
 int m = Convert.ToInt32(Console.ReadLine());
@@ -144,4 +147,6 @@ int max = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray = CreateRandom2dArray(m, n, min, max);
 Show2dArray(myArray);
+
+FindAverageInColumn(myArray);
 */
